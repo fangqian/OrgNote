@@ -964,7 +964,7 @@ class OrgNote(object):
         import os
         os.system("git add .")
         os.system("git commit -m \"update\"")
-        os.system("git push origin %" % (branch,))
+        os.system("git push origin %s" % (branch,))
 
     def do_generate(self):
         self.cfg.update()
@@ -1141,6 +1141,8 @@ def main(args=None):
             blog.do_new(sys.argv[2])
         elif sys.argv[1] == "publish":
             blog.do_publish(sys.argv[2])
+        elif sys.argv[1] == "deploy":
+            blog.do_deploy(sys.argv[2])
         else:
             usage()
     else:
