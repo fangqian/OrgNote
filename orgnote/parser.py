@@ -1094,7 +1094,7 @@ Commands:
   publish            Publish a note
   generate           Generate static files
   server             Start the server
-  deploy [branch]    Deploy your website
+  deploy [branch]    Deploy your website to master(default) or gh-pages branch
   help               Get help on a command
   version            Display version information
     
@@ -1135,8 +1135,6 @@ def main(args=None):
     elif len(sys.argv) == 3:
         if sys.argv[1] == "server":
             blog.do_server(sys.argv[2])
-        elif sys.argv[1] == "deploy":
-            blog.do_deploy(sys.argv[2])
         elif sys.argv[1] == "new":
             blog.do_new(sys.argv[2])
         elif sys.argv[1] == "publish":
