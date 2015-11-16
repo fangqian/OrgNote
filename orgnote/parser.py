@@ -960,11 +960,11 @@ class OrgNote(object):
             print str(ex)
             usage()
 
-    def do_deploy(self):
+    def do_deploy(self,branch="master"):
         import os
         os.system("git add .")
         os.system("git commit -m \"update\"")
-        os.system("git push origin master")
+        os.system("git push origin %" % (branch,))
 
     def do_generate(self):
         self.cfg.update()
@@ -1087,16 +1087,16 @@ def usage():
 Usage: orgnote <command>
 
 Commands:
-  init       Create a new OrgNote folder
-  new        Create a new .org post
-  list       List this blog notes
-  status     Status of those notes
-  publish    Publish a note
-  generate   Generate static files
-  server     Start the server
-  deploy     Deploy your website
-  help       Get help on a command
-  version    Display version information
+  init               Create a new OrgNote folder
+  new                Create a new .org post
+  list               List this blog notes
+  status             Status of those notes
+  publish            Publish a note
+  generate           Generate static files
+  server             Start the server
+  deploy [branch]    Deploy your website
+  help               Get help on a command
+  version            Display version information
     
 For more help, you can check the docs:  http://orgnote.readthedocs.org/zh_CN/latest/
     """
@@ -1135,6 +1135,8 @@ def main(args=None):
     elif len(sys.argv) == 3:
         if sys.argv[1] == "server":
             blog.do_server(sys.argv[2])
+        elif sys.argv[1] == "deploy":
+            blog.do_deploy(sys.argv[2])
         elif sys.argv[1] == "new":
             blog.do_new(sys.argv[2])
         elif sys.argv[1] == "publish":
